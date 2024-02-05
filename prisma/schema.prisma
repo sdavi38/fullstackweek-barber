@@ -11,14 +11,16 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  bookings      Booking[]
+  id       String    @id @default(cuid())
+  name     String?
+  //email         String?   @unique
+  //emailVerified DateTime?
+  // image         String?
+  // accounts      Account[]
+  //sessions      Session[]
+  bookings Booking[]
+  Account  Account[]
+  Session  Session[]
 }
 
 model Barbershop {
@@ -42,14 +44,14 @@ model Service {
 }
 
 model Booking {
-  id          String     @id @default(uuid())
-  userId      String
-  user        User       @relation(fields: [userId], references: [id])
-  serviceId   String
-  service     Service    @relation(fields: [serviceId], references: [id])
+  id           String     @id @default(uuid())
+  userId       String
+  user         User       @relation(fields: [userId], references: [id])
+  serviceId    String
+  service      Service    @relation(fields: [serviceId], references: [id])
   barbershopId String
-  barbershop  Barbershop @relation(fields: [barbershopId], references: [id])
-  date        DateTime
+  barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
+  date         DateTime
 }
 
 model Account {
